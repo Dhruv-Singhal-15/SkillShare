@@ -44,16 +44,16 @@
           </div>
         </div>
     </nav>
-
+    <h2>{{ step }}</h2>
     <div class="row">
 
         {% for i in range(course_name|length)%}
-            {% if  subject[i]  == 'HTMLCSSJavascript' %}
+            {% if  subject[i]  == step %}
                 <div class="col-md-3" style="margin-top: 30px;">
                     <div class="card">
                         <div class="card-body">
                             <img class="card-img-top" src="{{ img_link[i] }}">
-                            <a href="#" onclick="openInNewTab('{{ link[i] }}','{{ img_link[i] }}','{{ course_name[i] }}',' {{course_by[i]}} '); return false;"><h5>{{ course_name[i] }}</h5></a>
+                            <a href="#" onclick="openInNewTab('{{ link[i] }}','{{ img_link[i] }}','{{ course_name[i] }}','{{course_by[i]}}','{{step}}'); return false;"><h5>{{ course_name[i] }}</h5></a>
                             <p>{{ course_by[i] }}</p>
                             <p>votes: {{ votes[i] }} <br> rating: {{ rating[i] }}</p>
                         </div>
@@ -65,9 +65,9 @@
     </div>
     
     <script>
-        function openInNewTab(url,img,name,by) {
+        function openInNewTab(url,img,name,by,step) {
           window.open(url,'_blank');
-          window.location.href = '/add?url=' + encodeURIComponent(url) + '&img=' + encodeURIComponent(img) + '&name=' + encodeURIComponent(name) + '&by=' + encodeURIComponent(by);
+          window.location.href = '/add?url=' + encodeURIComponent(url) + '&img=' + encodeURIComponent(img) + '&name=' + encodeURIComponent(name) + '&by=' + encodeURIComponent(by) + '&step=' + encodeURIComponent(step);
         }
     </script>
 </body>

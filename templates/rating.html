@@ -7,7 +7,7 @@
     <title>Rating system</title>
 </head>
 <body>
-    <p>User Id: {{ user.id }} , Course id: {{ course.id }}</p>
+    <p>User Id: {{ user.id }} , Course by: {{ course.cid.iloc[0] }}</p>
     <div align="center" style="background: #000; padding: 50px;">
         <i class="fa fa-star fa-2x" data-index="0"></i>
         <i class="fa fa-star fa-2x" data-index="1"></i>
@@ -18,7 +18,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        var ratedIndex=-1,id=100,cid=100;
+        var ratedIndex=-1;
+        var user_id={{ user.id }};
+        var cid={{ course.cid.iloc[0] }};
         $(document).ready(function(){
             resetStarColors();
 
@@ -46,7 +48,7 @@
 
         function saveToTheDB(){
             var data = {
-                "id": id,
+                "user_id": user_id,
                 "cid": cid,
                 "ratedIndex": ratedIndex+1
             };
@@ -63,7 +65,7 @@
                     console.error("Error saving rating:", error);
                 }
             });
-            window.location.href = '/recommendation';
+            window.location.href = '/recommendation?cid='+encodeURIComponent(cid);
         }
 
         function setStars(max){

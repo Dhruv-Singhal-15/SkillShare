@@ -31,8 +31,8 @@
             });
         }
     
-        function redirectToCourses() {
-            window.location.href = "/courses";
+        function redirectToCourses(step) {
+            window.location.href = "/courses?step="+encodeURIComponent(step);
         }
     </script>
 </head>
@@ -41,7 +41,7 @@
 
         <h1>Did you take the course?</h1>
         <button onclick="redirectToDashboard('{{ user.email }}','{{ name }}','{{ by }}','{{ img }}','{{ url }}')">Yes</button>
-        <button onclick="redirectToCourses()">No</button>
+        <button onclick="redirectToCourses('{{ step }}')">No</button>
         <p id="message"></p>
     {% endif %}
 </body>

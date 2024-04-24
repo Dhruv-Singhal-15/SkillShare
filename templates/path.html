@@ -7,9 +7,9 @@
 </head>
 <body>
     <h2>Path to learn {{ path_row.skill }}</h2>
-    <a href="/courses">{{ path_row.step1 }}</a>-->
-    <a href="">{{ path_row.step2 }}</a>-->
-    <a href="">{{ path_row.step3 }}</a>-->
-    <a href="">{{ path_row.step4 }}</a>
+    <a href="/courses?step={{ path_row.step1 }}">{{ path_row.step1 }}</a>-->
+    <a href="/courses?step={{ path_row.step2 }}">{{ path_row.step2 }}</a>-->
+    <a href="/courses?step={{ path_row.step3 }}">{{ path_row.step3 }}</a>-->
+    <a href="/courses?step={{ path_row.step4 }}">{{ path_row.step4 }}</a>
 </body>
 </html>
