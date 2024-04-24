@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exists
 import csv
 import bcrypt
 
@@ -36,15 +37,21 @@ class CourseTaken(db.Model):
     
 class Rating(db.Model):
     sno=db.Column(db.Integer,primary_key=True)
-    id=db.Column(db.Integer)
+    user_id=db.Column(db.Integer)
     cid=db.Column(db.Integer)
     rating=db.Column(db.Integer)
     
-    def __init__(self,id,cid,rating):
-        self.id=id
+    def __init__(self,user_id,cid,rating):
+        self.user_id=user_id
         self.cid=cid
         self.rating=rating
-        
+
+class Course(db.Model):
+    cid=db.Column(db.Integer,primary_key=True)
+    title=db.Column(db.String)
+    by=db.Column(db.String)
+    subject=db.Column(db.Integer)
+
 class Path(db.Model):
     id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     skill=db.Column(db.String)
@@ -60,16 +67,19 @@ class Path(db.Model):
         self.step3=step3
         self.step4=step4
         
-def fromCsv(csv_file):
+def pathFromCsv(csv_file):
     with open(csv_file, 'r') as file:
-        reader = csv.DictReader(file)
+        reader = csv.reader(file)
+        next(reader)
         for row in reader:
-            new_path = Path(
-                skill=row['Skill'],
-                step1=row['Step1'],
-                step2=row['Step2'],
-                step3=row['Step3'],
-                step4=row['Step4']
-            )
-            db.session.add(new_path)
+            existing_path = db.session.query(exists().where(Path.skill == row[0])).scalar()
+            if not existing_path:
+                new_path = Path(
+                    skill=row[0],
+                    step1=row[1],
+                    step2=row[2],
+                    step3=row[3],
+                    step4=row[4]
+                )
+                db.session.add(new_path)
     db.session.commit()
