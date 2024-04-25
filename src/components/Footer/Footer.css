@@ -1,0 +1,13 @@
+.f-container{
+    justify-content: space-between;
+
+}
+.fl-left{
+    gap: 1rem;
+
+}
+.f-menu{
+    gap:1.5rem;
+    margin-top: 1.5 rem;
+    font-weight: 500;
+}

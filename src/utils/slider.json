@@ -1,0 +1,38 @@
+[
+  {
+    "name": "C++ course",
+    "price": "1999",
+    "detail": "CPP language Course",
+    "image": "./cpp.png"
+  },
+  {
+    "name": " DSA coure",
+    "price": "4999",
+    "detail": "DSA for Placement",
+    "image": "./dsa.png"
+  },
+  {
+    "name": "Mern Stack",
+    "price": "14,999",
+    "detail": "Full Mern Stack Development",
+    "image": "./web.jpg"
+  },
+  {
+    "name": "AI / ML ",
+    "price": "7,999",
+    "detail": "Course for AI ML",
+    "image": "./ai.jpg"
+  },
+  {
+    "name": "Android Development",
+    "price": "5000",
+    "detail": "Full Android Development",
+    "image": "./android.jpg"
+  },
+  {
+    "name": "Java",
+    "price": "3,999",
+    "detail": "Java for DSA",
+    "image": "./java.jpg"
+  }
+]
