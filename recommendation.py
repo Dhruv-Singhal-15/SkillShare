@@ -1,21 +1,20 @@
 import pandas as pd
 import numpy as np
-from models import Path,Rating
+from models import Path,Rating,Course
 from sklearn.metrics.pairwise import cosine_similarity
 import os
 import pickle
 
 def load():
-    courses=pd.read_csv('C:\\Users\\Rushil\\Desktop\\Dataset\\Courses.csv')
-    ratings_df=pd.read_csv('C:\\Users\\Rushil\\Desktop\\Dataset\\Rating.csv')
+    courses=Course.query.all()
+    courses_data=[{'cid': course.cid,'Course_Title': course.title,'Course_by': course.by,'Subject': course.subject,'Link': course.link,'Image_link': course.img_link} for course in courses]
+    courses_df=pd.DataFrame(courses_data)
 
     ratings=Rating.query.all()
-    if ratings:
-        ratings_data=[{'id': rating.user_id,'cid': rating.cid,'Rating': rating.rating} for rating in ratings]
-        ratings_df_db=pd.DataFrame(ratings_data)
-        ratings_df=pd.concat([ratings_df,ratings_df_db],ignore_index=True)
+    ratings_data=[{'id': rating.user_id,'cid': rating.cid,'Rating': rating.rating} for rating in ratings]
+    ratings_df=pd.DataFrame(ratings_data)
 
-    rating_with_name=ratings_df.merge(courses,on='cid')
+    rating_with_name=ratings_df.merge(courses_df,on='cid')
 
     num_rating_df=rating_with_name.groupby('Course_Title').count()['Rating'].reset_index()
     num_rating_df.rename(columns={'Rating':'num_ratings'},inplace=True)
@@ -24,7 +23,7 @@ def load():
     avg_rating_df.rename(columns={'Rating':'avg_ratings'},inplace=True)
 
     popular_df = num_rating_df.merge(avg_rating_df,on='Course_Title')
-    popular_df=popular_df.merge(courses,on='Course_Title',how='right').fillna(0)
+    popular_df=popular_df.merge(courses_df,on='Course_Title',how='right').fillna(0)
 
     file_path='C:\\Users\\Rushil\\Desktop\\Minor-2\\templates\\popular.pkl'
     if os.path.exists(file_path):

@@ -1,16 +1,11 @@
-import logging
 from flask import Flask,request,render_template,redirect,session,url_for,flash,jsonify
 from forms import RegistrationForm, LoginForm
-from models import db,User,CourseTaken,Rating,Path,pathFromCsv
+from models import db,User,CourseTaken,CourseCompleted,Rating,Path,pathFromCsv,coursesFromCsv,ratingFromCsv
 from sqlalchemy.exc import OperationalError
 import pickle
 from recommendation import load,recommend
 import pandas as pd
 import os
-
-logging.basicConfig(filename='app.log', level=logging.DEBUG)
-
-logging.debug('Starting app.py')
 
 app = Flask(__name__)
 
@@ -23,10 +18,13 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+    coursesFromCsv('C:\\Users\\Rushil\\Desktop\\Dataset\\Courses.csv')
+    pathFromCsv('C:\\Users\\Rushil\\Desktop\\Dataset\\Path.csv')
+    ratingFromCsv('C:\\Users\\Rushil\\Desktop\\Dataset\\Rating.csv')
     load()
     file_path=os.path.join('templates','popular.pkl')
     popular_df=pickle.load(open(file_path,'rb'))
-    pathFromCsv('C:\\Users\\Rushil\\Desktop\\Dataset\\Path.csv')
+    
 
 def get_current_user():
     if 'email' in session:
@@ -76,10 +74,14 @@ def dashboard():
             courses_taken = CourseTaken.query.filter_by(umail=user.email).all()
         except OperationalError:
             courses_taken = None
+        try:
+            courses_completed = CourseCompleted.query.filter_by(umail=user.email).all()
+        except OperationalError:
+            courses_completed = None
             
         message=request.args.get('message')
         
-        return render_template('dashboard.html',user=user,courses_taken=courses_taken,message=message)
+        return render_template('dashboard.html',user=user,courses_taken=courses_taken,courses_completed=courses_completed,message=message)
     return redirect('/login')
 
 @app.route('/skills')
@@ -162,6 +164,11 @@ def rating():
             db.session.commit()
             
             course_name = popular_df[popular_df['cid'] == cid]['Course_Title'].iloc[0]
+            course_entry=CourseTaken.query.filter_by(cname=course_name).first()
+            if course_entry:
+                new_completed_entry=CourseCompleted(umail=course_entry.umail,cname=course_entry.cname,cby=course_entry.cby,img=course_entry.img,link=course_entry.link)
+                db.session.add(new_completed_entry)
+                db.session.commit()
             CourseTaken.query.filter_by(cname=course_name).delete()
             db.session.commit()
 
