@@ -46,6 +46,25 @@
             <p>No course taken yet.</p>
         {% endif %}
         
+        <h4>Courses Completed: </h4>
+    
+        <div class="row">
+            {% if courses_completed %}
+                {% for course in courses_completed%}
+                    <div class="col-md-3" style="margin-top: 30px;">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="{{ course.img }}">
+                                <a href="{{ course.link }}"><h5>{{ course.cname }}</h5></a>
+                                <p>{{ course.cby }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No course completed yet.</p>
+            {% endif %}
+
     </div>
 
     <script>
