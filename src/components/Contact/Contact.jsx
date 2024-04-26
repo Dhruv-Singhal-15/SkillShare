@@ -81,7 +81,7 @@ function Contact() {
                                 Mail 
                             </span>
                             <span className='secondaryText'>
-                                skillshare@gmail.com
+                                skillsprint@gmail.com
                             </span>
                         </div>
                     </div>

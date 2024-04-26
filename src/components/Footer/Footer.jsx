@@ -8,11 +8,19 @@ function Footer() {
    
    <div className='padding flexCenter innerWidth f-container'>
    <div className='flexColStart f-left '>
-   <img src='./logo.jpg' alt ='' width={120} />
+   <img src='./logo_bg.png' alt ='' width={300} />
 
    <span className='SecondaryText'>
-   our vision is to make all people <br/>
-   to get their best course for their Upskills.
+   <h3>About Us</h3>
+   <br/>
+   A course recommendation site helps users find the right educational courses for their 
+   <br/>
+
+   interests and goals. Using personalized suggestions, user reviews, and advanced <br/>
+
+    algorithms, Users can explore, enroll, track progress, and engage with a <br/>
+    learning community for a seamless and enjoyable learning experience.<br/>
+    to get their best course for their Upskills.
 
 
    </span>
@@ -22,6 +30,8 @@ function Footer() {
         Information
     </span> 
     <span className='seconadryText'>
+    <h3>Address</h3>
+    
     Sector 62 Noida , Uttarpradesh, India
 
     </span>
