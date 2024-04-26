@@ -28,11 +28,11 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4 py-3">
-                            <a href="#" class="bg-black text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
-                            <a href="#" class="text-white hover:bg-blue-500 hover:text-black rounded-md px-3 py-2 text-sm font-medium">About</a>
-                            <a href="#" class="text-white hover:bg-blue-500 hover:text-black rounded-md px-3 py-2 text-sm font-medium">Roadmaps</a>
-                            <a href="#" class="text-white hover:bg-blue-500 hover:text-black rounded-md px-3 py-2 text-sm font-medium">My Courses</a>
-                            <a href="#" class="text-white hover:bg-blue-500 hover:text-black rounded-md px-3 py-2 text-sm font-medium">Certifications</a>
+                            <a href="/dashboard" class="bg-black text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
+                            <a href="#footer-main" class="text-white hover:bg-blue-500 hover:text-black rounded-md px-3 py-2 text-sm font-medium">About</a>
+                            <!-- <a href="#" class="text-white hover:bg-blue-500 hover:text-black rounded-md px-3 py-2 text-sm font-medium">Roadmaps</a> -->
+                            <a href="#courses-completed" class="text-white hover:bg-blue-500 hover:text-black rounded-md px-3 py-2 text-sm font-medium" onclick="scrollToCoursesCompleted()">My Courses</a>
+                            <a href="https://forms.gle/zLpiFiP9kiTo87Fk6" target="_blank" class="text-white hover:bg-blue-500 hover:text-black rounded-md px-3 py-2 text-sm font-medium">Certifications</a>
                         </div>
                     </div>
                 </div>
@@ -115,8 +115,8 @@
                 {% endif %}
             </div>
         </section>  
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">Courses Completed</h2>
+        <section id="courses-completed" class="mb-8">
+            <h2  class="text-2xl font-semibold mb-4">Courses Completed</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {% if courses_completed %}
                 {% for course in courses_completed %}
@@ -143,29 +143,31 @@
 
     </main>
     <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row items-center justify-between">
-                <div class="flex items-center mb-4 lg:mb-0">
-                    <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="h-14 w-auto rounded-2xl" alt="">
-                    <!-- <span class="ml-3 text-xl font-semibold">SkillSprint</span> -->
+        <section id="footer-main">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center justify-between">
+                    <div class="flex items-center mb-4 lg:mb-0">
+                        <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="h-14 w-auto rounded-2xl" alt="">
+                        <!-- <span class="ml-3 text-xl font-semibold">SkillSprint</span> -->
+                    </div>
+                    <ul class="flex flex-wrap justify-center lg:justify-end space-x-6">
+                        <li>
+                            <a href="#" class="hover:text-blue-500">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-blue-500">Explore Courses</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-blue-500">Contact Us</a>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="flex flex-wrap justify-center lg:justify-end space-x-6">
-                    <li>
-                        <a href="#" class="hover:text-blue-500">About Us</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:text-blue-500">Explore Courses</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:text-blue-500">Contact Us</a>
-                    </li>
-                </ul>
+                <hr class="my-6 border-gray-600">
+                <div class="text-center text-sm">
+                    <p>© 2024 SkillSprint. All Rights Reserved.</p>
+                </div>
             </div>
-            <hr class="my-6 border-gray-600">
-            <div class="text-center text-sm">
-                <p>© 2024 SkillSprint. All Rights Reserved.</p>
-            </div>
-        </div>
+        </section>
     </footer>
 
     <script>
@@ -182,6 +184,11 @@
             var encodedCname = encodeURIComponent(cname);
             var url='https://docs.google.com/forms/d/e/1FAIpQLSdtTt_ErjFQr8o4iMeiki2ZTvcq1UQi9dI4M19yjTgmJXB7kQ/viewform'
             window.open(url,'_blank');
+        }
+
+        function scrollToCoursesCompleted() {
+            var coursesCompletedSection = document.getElementById("courses-completed");
+            coursesCompletedSection.scrollIntoView({ behavior: "smooth" });
         }
     </script>
 
