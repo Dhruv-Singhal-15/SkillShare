@@ -58,7 +58,7 @@ def recommend(skill,course_name):
     values = path_db.iloc[tolearn_index, 1:].tolist()
     next_step_index = values.index(sub_of_course) + 1
     if next_step_index >= len(path_db.columns) - 1:
-        return "/dashboard", "Congratulations you have completed the course"
+        return "/dashboard", "Congratulations"
     next_step = path_db[path_db['skill'] == skill].iloc[tolearn_index, next_step_index+1]
     sim_items = sorted(list(enumerate(sim_score[index])), key=lambda x: x[1], reverse=True)[1:]
     recommended_courses=[]
