@@ -17,10 +17,11 @@ class RegistrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     email = StringField('Email', [validators.DataRequired(), validators.Email()])
     password = PasswordField('Password', [validators.DataRequired()])
-    def validate_email_registered(self, field):
+    def validate_email(self, field):
         user = User.query.filter_by(email=field.data).first()
         if user is None:
             raise validators.ValidationError('Email is not registered')
-        else:
-            if not user.check_password(self.password.data):
-                raise validators.ValidationError('Incorrect password')
+    def validate_password(self, field):
+        user = User.query.filter_by(email=self.email.data).first()
+        if user is not None and not user.check_password(field.data):
+            raise validators.ValidationError('Incorrect password')

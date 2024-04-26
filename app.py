@@ -142,8 +142,12 @@ def add():
             name = request.args.get('name')
             by = request.args.get('by')
             step = request.args.get('step')
-    
-            return render_template('add.html',user=user,url=url,img=img,name=name,by=by,step=step)
+            if CourseTaken.query.filter_by(umail=user.email , cname=name).first():
+                return render_template('done.html',status='taken')
+            elif CourseCompleted.query.filter_by(umail=user.email , cname=name).first():
+                return render_template('done.html',status='completed')
+            else:
+                return render_template('add.html',user=user,url=url,img=img,name=name,by=by,step=step)
     
         return redirect('/login')
     
