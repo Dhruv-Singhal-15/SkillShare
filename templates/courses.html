@@ -19,19 +19,30 @@
       }
       .col-md-3 {
         display: flex;
-        flex-wrap: wrap; /* Ensures all boxes fit in a row */
+        flex-wrap: wrap;
       }
       .card {
-        height: 500px; /* Adjust the height as needed */
+        height: 500px;
       }
-      
-      
-      
+      .heading-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 20px;
+      }
+      .heading-btn {
+        margin-left: 10px;
+        margin-right: 20px;
+        margin-top: 10px;
+      }
     </style>
 
 </head>
 <body>
-  <h1 class="text-center primaryText" style="color: #4066ff">Courses </h1>
+  <div class="heading-container">
+    <h1 class="text-center primaryText" style="color: #4066ff">Courses </h1>
+    <a href="/dashboard" class="btn btn-primary heading-btn">Dashboard</a>
+  </div>
    
     <h3 class="secondaryText text-center  my-4"  style="color: #1f3e72; ">{{ step }} </h3>
     <br>
@@ -53,8 +64,6 @@
             {% endfor %}
         </div>
     </div>
-
-    <a href="/dashboard">Back to Dashboard</a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>

@@ -21,15 +21,18 @@
             display: inline-block;
         }
 
-        .button:hover {
+        /* .button:hover {
             background: var(--blue-dark);
-        }
+        } */
         .primaryText {
             color: #1f3e72;
             font-weight: bold;
             font-size: 2rem;
-          }
-          
+        }
+        .container {
+            padding-top: 80px;
+            text-align: center;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -58,20 +61,21 @@
             });
         }
 
-        function redirectToCourses(step) {
-            window.location.href = '/courses?step=' + encodeURIComponent(step);
+        function goToPreviousPage(){
+            window.history.back();
         }
     </script>
 </head>
-
 <body class="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
     {% if user %}
-    <h1 class="primaryText" style="text-align: center;"> Did you take the course?</h1>
-    <div class="flex space-x-4" style="text-align: center;">
-        <button onclick="redirectToDashboard('{{ user.email }}','{{ name }}','{{ by }}','{{ img }}','{{ url }}')" class="button">Yes</button>
-        <button onclick="redirectToCourses('{{ step }}')" class="button">No</button>
-    </div>
-    <p id="message" class="mt-4 text-gray-600 text-center"></p>
+        <div class="container">
+            <h1 class="primaryText" style="text-align: center;"> Did you take the course?</h1>
+            <div class="flex space-x-4">
+                <button onclick="redirectToDashboard('{{ user.email }}','{{ name }}','{{ by }}','{{ img }}','{{ url }}')" class="button">Yes</button>
+                <button onclick="goToPreviousPage()" class="button">No</button>
+            </div>
+            <p id="message" class="mt-4 text-gray-600 text-center"></p>
+        </div>
     {% endif %}
 </body>
 
