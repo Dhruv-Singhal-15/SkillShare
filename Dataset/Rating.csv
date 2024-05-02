@@ -1,4 +1,4 @@
-id,cid,Rating
+user_id,cid,Rating
 1,101,5
 2,101,2
 3,101,3
