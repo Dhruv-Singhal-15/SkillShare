@@ -27,7 +27,7 @@ The primary objectives of the SkillSprint project are to develop an innovative a
 ![3c568753-a39a-4d48-8814-b56e89e54703](https://github.com/Dhruv-Singhal-15/SkillSprint/assets/105713306/b98d04c8-468a-44c5-962b-e9ed4f94b7a6)
 ![ba890bc6-7328-44dc-8671-d4c5b17fd48c](https://github.com/Dhruv-Singhal-15/SkillSprint/assets/105713306/4ba853b4-afa5-40cc-a466-9888564a7456)
 ![3db3e03b-70ca-4ccd-a0c7-107cc9cbdedf](https://github.com/Dhruv-Singhal-15/SkillSprint/assets/105713306/2045325a-c7c8-47f2-858d-428211f2ebb4)
-![3db3e03b-70ca-4ccd-a0c7-107cc9cbdedf](https://github.com/Dhruv-Singhal-15/SkillSprint/assets/105713306/77a28d38-adcf-4cc4-a348-14e3b71b9aa1)
+![346d103b-a1e9-4e2b-9442-b4464df36808](https://github.com/Dhruv-Singhal-15/SkillSprint/assets/105713306/998a56f4-7158-4ea3-9147-ee83ca354ed8)
 
 
 ## Run Locally
